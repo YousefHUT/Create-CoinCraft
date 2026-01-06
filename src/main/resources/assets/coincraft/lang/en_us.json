@@ -1,13 +1,4 @@
 {
-  "itemGroup.coincraft": "Example Mod Tab",
-  "block.coincraft.example_block": "Example Block",
-  "item.coincraft.example_item": "Example Item",
-
-  "coincraft.configuration.title": "Create: CoinCraft Configs",
-  "coincraft.configuration.section.coincraft.common.toml": "Create: CoinCraft Configs",
-  "coincraft.configuration.section.coincraft.common.toml.title": "Create: CoinCraft Configs",
-  "coincraft.configuration.items": "Item List",
-  "coincraft.configuration.logDirtBlock": "Log Dirt Block",
-  "coincraft.configuration.magicNumberIntroduction": "Magic Number Text",
-  "coincraft.configuration.magicNumber": "Magic Number"
+  "itemGroup.coincraft": "Create: CoinCraft",
+  "itemGroup.coincraft.example_tab": "Create: CoinCraft"
 }

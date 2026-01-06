@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="coincraft"
+version="1.0.0" # Burayı elinle 1.0.0 yaptığından emin ol
+displayName="Create Coin Craft"
+authors="YousefHUT"
+description='''
+This mod / datapack adds recipes for Create Numismatics coins.
+'''
+
+[[dependencies.coincraft]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.coincraft]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1, 1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.coincraft]]
+    modId="create"
+    type="required"
+    versionRange="[0.6.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.coincraft]]
+    modId="numismatics"
+    type="required"
+    versionRange="[0.0,)"
+    ordering="AFTER"
+    side="BOTH"

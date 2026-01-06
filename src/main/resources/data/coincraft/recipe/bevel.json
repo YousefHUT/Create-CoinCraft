@@ -5,15 +5,14 @@
       "tag": "c:plates/zinc"
     }
   ],
-  "type": "minecraft:crafting_shapeless",
+    "type": "create:pressing",
   "ingredients": [
-    { "tag": "c:ingots/zinc" },
-    { "tag": "c:ingots/zinc" },
-    { "tag": "c:ingots/zinc" },
     { "tag": "c:ingots/zinc" }
   ],
-  "result": {
-    "id": "numismatics:bevel",
-    "count": 4
-  }
+  "results": [
+    {
+      "id": "numismatics:bevel",
+      "count": 1
+    }
+  ]
 }

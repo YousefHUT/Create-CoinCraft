@@ -18,7 +18,19 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+    mavenCentral()
+        maven {
+            name = "Create Maven"
+            url = "https://maven.createmod.net"
+        }
+        maven {
+            name = "Devos Maven"
+            url = "https://mvn.devos.one/snapshots/"
+        }
+        maven {
+            name = "TerraformersMC"
+            url = "https://maven.terraformersmc.com/"
+        }
 }
 
 base {
@@ -113,7 +125,9 @@ configurations {
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
-    implementation "com.simibubi.create:create-${minecraft_version}:${create_version}:slim"
+    implementation("com.simibubi.create:create-1.21.1:${create_version}:slim") {
+            transitive = false
+        }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
