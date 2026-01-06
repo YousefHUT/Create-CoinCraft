@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/zinc"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "tag": "c:plates/zinc" },
+    { "tag": "c:plates/zinc" },
+    { "tag": "c:plates/zinc" },
+    { "tag": "c:plates/zinc" }
+  ],
+  "result": {
+    "id": "numismatics:bevel",
+    "count": 4
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "tag": "c:plates/brass" },
+    { "tag": "c:plates/brass" },
+    { "tag": "c:plates/brass" },
+    { "tag": "c:plates/brass" }
+  ],
+  "result": {
+    "id": "numismatics:cog",
+    "count": 1
+  }
+}

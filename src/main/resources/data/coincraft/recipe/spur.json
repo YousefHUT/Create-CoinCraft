@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "tag": "c:plates/copper" },
+    { "tag": "c:plates/copper" },
+    { "tag": "c:plates/copper" },
+    { "tag": "c:plates/copper" }
+  ],
+  "result": {
+    "id": "numismatics:spur",
+    "count": 1
+  }
+}

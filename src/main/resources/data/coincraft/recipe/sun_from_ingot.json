@@ -1,0 +1,16 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    { "tag": "c:ingots/netherite" }
+  ],
+  "results": [
+    {
+      "id": "numismatics:sun",
+      "count": 4
+    },
+    {
+      "id": "numismatics:crown",
+      "count": 1
+    }
+  ]
+}
