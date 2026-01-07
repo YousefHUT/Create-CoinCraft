@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0.0,
+  "ingredient": {
+    "item": "numismatics:bevel"
+  },
+  "result": {
+    "count": 1,
+    "id": "create:zinc_ingot"
+  }
+}
