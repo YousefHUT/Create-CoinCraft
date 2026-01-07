@@ -7,4 +7,4 @@ Create: 6 or newer
 Create numismatics: any
 
 ## Optional
-Create stuff and additions (Or a mod has an item with #c:plates/zinc tag)
+Create crafts & additions (Or a mod has an item with #c:plates/zinc tag)
