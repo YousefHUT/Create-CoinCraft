@@ -1,0 +1,20 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "numismatics:cog"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:brass_nugget",
+      "count": 9
+    },
+    {
+      "id": "create:brass_nugget",
+      "count": 9,
+      "chance": 0.3
+    }
+  ]
+}

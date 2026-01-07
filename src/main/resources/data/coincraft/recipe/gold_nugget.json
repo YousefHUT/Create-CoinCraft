@@ -1,0 +1,20 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "numismatics:crown"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:gold_nugget",
+      "count": 9
+    },
+    {
+      "id": "minecraft:gold_nugget",
+      "count": 9,
+      "chance": 0.3
+    }
+  ]
+}

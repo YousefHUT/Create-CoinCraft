@@ -1,13 +1,21 @@
 {
-  "type": "minecraft:smelting",
-  "category": "misc",
-  "cookingtime": 1200,
-  "experience": 0.0,
-  "ingredient": {
-    "item": "numismatics:sun"
-  },
-  "result": {
-    "count": 1,
-    "id": "minecraft:netherite_scrap"
-  }
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    { "item": "numismatics:sun" },
+    { "item": "numismatics:sun" },
+    { "item": "numismatics:sun" },
+    { "item": "numismatics:sun" }
+  ],
+  "results": [
+    {
+      "id": "minecraft:netherite_scrap",
+      "count": 1
+    },
+    {
+      "id": "minecraft:netherite_scrap",
+      "count": 1,
+      "chance": 0.3
+    }
+  ]
 }
