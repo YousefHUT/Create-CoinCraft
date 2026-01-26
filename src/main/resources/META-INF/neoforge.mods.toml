@@ -4,8 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="coincraft"
-version="1.0.2"
+version="1.1.0"
 displayName="Create Coin Craft"
+logoFile="data/pack.png"
 authors="YousefHUT"
 description='''
 This mod / datapack adds recipes for Create Numismatics coins.
