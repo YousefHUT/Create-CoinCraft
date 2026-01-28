@@ -1,3 +1,5 @@
 {
-  "itemGroup.coincraft": "Create: CoinCraft"
+  "itemGroup.coincraft": "Create: CoinCraft",
+  "item.coincraft.money_pouch": "Money Pouch",
+  "item.coincraft.money_pouch.tooltip": "Balance: %s Spurs"
 }

@@ -9,7 +9,7 @@ displayName="Create Coin Craft"
 logoFile="pack.png"
 authors="YousefHUT"
 description='''
-This mod / datapack adds recipes for Create Numismatics coins.
+This mod adds recipes and wallets for Create Numismatics coins.
 '''
 
 [[dependencies.coincraft]]
@@ -36,6 +36,6 @@ This mod / datapack adds recipes for Create Numismatics coins.
 [[dependencies.coincraft]]
     modId="numismatics"
     type="required"
-    versionRange="[0.0,)"
+    versionRange="[0.7.0,)"
     ordering="AFTER"
     side="BOTH"

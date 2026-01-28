@@ -31,6 +31,12 @@ repositories {
             name = "TerraformersMC"
             url = "https://maven.terraformersmc.com/"
         }
+        maven {
+            url "https://cursemaven.com"
+            content {
+                includeGroup "curse.maven"
+            }
+        }
 }
 
 base {
@@ -128,6 +134,7 @@ dependencies {
     implementation("com.simibubi.create:create-1.21.1:${create_version}:slim") {
             transitive = false
         }
+    // implementation "curse.maven:numismatics-889722:7168396"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
