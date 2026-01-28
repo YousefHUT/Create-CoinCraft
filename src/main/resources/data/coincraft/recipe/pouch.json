@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "numismatics:cog" },
+    { "tag": "c:leathers" },
+    { "tag": "c:strings" }
+  ],
+  "result": {
+    "id": "coincraft:money_pouch",
+    "count": 1
+  }
+}

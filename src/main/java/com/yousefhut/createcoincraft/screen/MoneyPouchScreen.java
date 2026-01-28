@@ -1,6 +1,7 @@
 package com.yousefhut.createcoincraft.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.yousefhut.createcoincraft.item.MoneyPouchItem;
 import com.yousefhut.createcoincraft.menu.MoneyPouchMenu;
 import com.yousefhut.createcoincraft.network.WithdrawPacket;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,13 +17,15 @@ public class MoneyPouchScreen extends AbstractContainerScreen<MoneyPouchMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("coincraft", "textures/gui/pouch_gui.png");
     private EditBox amountField;
     private Button withdrawButton;
-    private long withdrawalAmount = 0;
+    private Button unitToggleButton;
+    private int inputAmount = 0;
+    private boolean useCogs = false;
 
     public MoneyPouchScreen(MoneyPouchMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
-        this.imageWidth = 176; // Smaller width
-        this.imageHeight = 80; // Smaller height
-        this.inventoryLabelY = this.imageHeight - 94; // Adjust inventory label position if needed, though no inventory slots
+        this.imageWidth = 176;
+        this.imageHeight = 80;
+        this.inventoryLabelY = this.imageHeight - 94;
     }
 
     @Override
@@ -31,18 +34,31 @@ public class MoneyPouchScreen extends AbstractContainerScreen<MoneyPouchMenu> {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
-        // Center the EditBox
         this.amountField = new EditBox(this.font, x + (this.imageWidth / 2) - 25, y + 20, 50, 10, Component.literal(""));
         this.amountField.setFilter(s -> s.isEmpty() || s.matches("\\d+"));
         this.amountField.setResponder(this::onAmountChanged);
         this.addRenderableWidget(this.amountField);
 
-        // Center the Withdraw button
         this.withdrawButton = Button.builder(Component.literal("Withdraw"), this::onWithdraw)
                 .bounds(x + (this.imageWidth / 2) - 30, y + 40, 60, 20)
                 .build();
         this.addRenderableWidget(this.withdrawButton);
 
+        this.unitToggleButton = Button.builder(getUnitToggleButtonText(), this::onUnitToggle)
+                .bounds(x + (this.imageWidth / 2) + 30, y + 20 - 2, 60, 14)
+                .build();
+        this.addRenderableWidget(this.unitToggleButton);
+
+        updateWithdrawButtonState();
+    }
+
+    private Component getUnitToggleButtonText() {
+        return Component.literal("Unit: " + (useCogs ? "Cogs" : "Spurs"));
+    }
+
+    private void onUnitToggle(Button button) {
+        useCogs = !useCogs;
+        button.setMessage(getUnitToggleButtonText());
         updateWithdrawButtonState();
     }
 
@@ -62,28 +78,61 @@ public class MoneyPouchScreen extends AbstractContainerScreen<MoneyPouchMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        // Adjust title and balance display positions
         graphics.drawString(this.font, this.title, this.imageWidth / 2 - this.font.width(this.title) / 2, 6, 4210752, false);
-        graphics.drawString(this.font, "Balance: " + this.menu.getBalance(), this.imageWidth / 2 - this.font.width("Balance: " + this.menu.getBalance()) / 2, 70, 4210752, false);
-        // No player inventory title needed as there are no slots
+
+        int balance = this.menu.getBalance();
+        String formattedBalanceText;
+
+        if (balance > 0) {
+            int cogs = balance / 64;
+            int spurs = balance % 64;
+
+            StringBuilder formattedBalance = new StringBuilder("Value: ");
+            if (cogs > 0) {
+                formattedBalance.append(cogs).append(" Cogs");
+                if (spurs > 0) {
+                    formattedBalance.append(", ");
+                }
+            }
+            if (spurs > 0) {
+                formattedBalance.append(spurs).append(" Spurs");
+            }
+            formattedBalance.append(" (").append(balance).append(")");
+
+            formattedBalanceText = formattedBalance.toString();
+        } else {
+            formattedBalanceText = Component.translatable("item.coincraft.money_pouch.tooltip.empty").getString();
+        }
+
+        graphics.drawString(this.font, formattedBalanceText, this.imageWidth / 2 - this.font.width(formattedBalanceText) / 2, 70, 4210752, false);
     }
 
     private void onAmountChanged(String text) {
         try {
-            this.withdrawalAmount = Long.parseLong(text);
+            this.inputAmount = Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            this.withdrawalAmount = 0;
+            this.inputAmount = 0;
         }
         updateWithdrawButtonState();
     }
 
     private void onWithdraw(Button button) {
-        if (this.withdrawalAmount > 0) {
-            PacketDistributor.sendToServer(new WithdrawPacket(this.withdrawalAmount));
+        int effectiveWithdrawalAmount = inputAmount;
+        if (useCogs) {
+            effectiveWithdrawalAmount *= 64;
+        }
+
+        if (effectiveWithdrawalAmount > 0) {
+            PacketDistributor.sendToServer(new WithdrawPacket(effectiveWithdrawalAmount, this.menu.getPouchSlotIndex()));
+            this.minecraft.player.closeContainer();
         }
     }
 
     private void updateWithdrawButtonState() {
-        this.withdrawButton.active = this.withdrawalAmount > 0 && this.withdrawalAmount <= this.menu.getBalance();
+        int effectiveWithdrawalAmount = inputAmount;
+        if (useCogs) {
+            effectiveWithdrawalAmount *= 64;
+        }
+        this.withdrawButton.active = effectiveWithdrawalAmount > 0 && effectiveWithdrawalAmount <= this.menu.getBalance() && effectiveWithdrawalAmount <= MoneyPouchItem.MAX_BALANCE;
     }
 }

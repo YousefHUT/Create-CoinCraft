@@ -5,10 +5,12 @@ import com.yousefhut.createcoincraft.core.ModItems;
 import com.yousefhut.createcoincraft.core.ModMenuTypes;
 import com.yousefhut.createcoincraft.network.PacketHandler;
 import com.yousefhut.createcoincraft.screen.MoneyPouchScreen;
+import dev.ithundxr.createnumismatics.registry.NumismaticsCreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 @Mod(CoinCraft.MODID)
 public class CoinCraft {
@@ -22,15 +24,19 @@ public class CoinCraft {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(PacketHandler::register);
         modEventBus.addListener(this::onRegisterMenuScreens);
+        modEventBus.addListener(this::addCreative);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            // Client setup tasks
-        });
     }
 
     private void onRegisterMenuScreens(final RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.MONEY_POUCH_MENU.get(), MoneyPouchScreen::new);
+    }
+
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == NumismaticsCreativeModeTabs.Tabs.MAIN.getKey()) {
+            event.accept(ModItems.MONEY_POUCH.get());
+        }
     }
 }

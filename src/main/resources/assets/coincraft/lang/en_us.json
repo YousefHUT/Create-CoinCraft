@@ -1,5 +1,7 @@
 {
   "itemGroup.coincraft": "Create: CoinCraft",
   "item.coincraft.money_pouch": "Money Pouch",
-  "item.coincraft.money_pouch.tooltip": "Balance: %s Spurs"
+  "item.coincraft.money_pouch.tooltip.empty": "Empty",
+  "item.coincraft.money_pouch.tooltip.full": "Full",
+  "item.coincraft.money_pouch.full": "Pouch is full"
 }
